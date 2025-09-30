@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ᴏʙʟɪᴛᴇʀᴀᴛᴇ ᴡᴇʙ ʙᴜɢs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f172a, #000);
+      font-family: 'JetBrains Mono', monospace;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .btn-menu, .btn-custom {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      border: 1px solid #60a5fa;
+      padding: 0.9rem;
+      border-radius: 0.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 12px rgba(59,130,246,0.5);
+    }
+    .btn-menu:hover, .btn-custom:hover {
+      transform: scale(1.05);
+      background: #3b82f6;
+      box-shadow: 0 0 18px rgba(96,165,250,0.8);
+    }
+    .hidden { display: none; }
+    .page { animation: fadeIn 0.6s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pricing-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid #3b82f6;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+    }
+    .plan-title { font-size: 1.3rem; font-weight: 700; color: #60a5fa; text-align: center; }
+    .price { font-size: 2rem; font-weight: 800; color: #38bdf8; text-align: center; margin-top: 0.6rem; }
+    .features li { margin-bottom: 0.6rem; display: flex; align-items: center; }
+    .features li::before { content: "✔"; color: #22d3ee; margin-right: 0.6rem; }
+    footer { font-size: 0.75rem; color: #64748b; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+  <div id="login-page" class="page min-h-screen flex items-center justify-center px-4">
+    <div class="bg-black/80 border border-green-500 shadow-2xl p-6 rounded-2xl w-full max-w-md animate__animated animate__fadeIn">
+      <h1 class="text-3xl font-bold text-center mb-4 text-green-400">🔐 Login</h1>
+      <input id="username" class="w-full p-3 mb-3 rounded-lg bg-black/70 border border-green-600 text-white text-center" placeholder="Username"/>
+      <input id="password" type="password" class="w-full p-3 mb-4 rounded-lg bg-black/70 border border-green-600 text-white text-center" placeholder="Password"/>
+      <div class="btn-custom w-full" onclick="login()">Login</div>
+        <a href="https://t.me/gaara_the_mf" target="_blank" class="btn-custom mt-4 block">contact developer</a>
+      <p class="text-xs text-gray-400 mt-4 text-center">contact the developer for credentials</p>
+    </div>
+  </div>
+
+  <!-- MENU UTAMA -->
+  <div id="menu-page" class="page min-h-screen flex flex-col items-center justify-center px-6">
+    <div class="bg-gray-900/70 border border-green-500 shadow-xl p-8 rounded-2xl w-full max-w-md animate__animated animate__fadeIn">
+      <h1 class="text-4xl font-extrabold text-center mb-8 text-green-400 tracking-wide">BUG VIA WEB</h1>
+      <div class="grid grid-cols-1 gap-4">
+        <div class="btn-menu" onclick="showPage('xterclose-page')">𝗕𝗨𝗚 𝗨𝗦𝗘𝗥</div>
+        <div class="btn-menu" onclick="showPage('produk-page')">🛒 𝗦𝗧𝗢𝗥𝗘</div>
+        <div class="btn-menu" onclick="showPage('trackip-page')">𝗧𝗥𝗔𝗖𝗞 𝗜𝗣</div>
+        <div class="btn-menu" onclick="showPage('FEATURE-page')">⚙️ 𝗢𝗧𝗛𝗘𝗥𝗦</div>
+        <div class="btn-menu" onclick="logout()">🔓 𝗟𝗢𝗚𝗢𝗨𝗧</div>
+      </div>
+    </div>
+    <footer>BY 🕸 GAARA</footer>
+  </div>
+
+  <!-- PRODUK -->
+  <div id="produk-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6 py-10">
+    <h1 class="text-4xl font-bold text-center mb-6 text-green-400">𝗨𝗦𝗘𝗥 𝗦𝗧𝗢𝗥𝗘</h1>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl w-full">
+      <!-- Basic -->
+      <div class="pricing-card">
+        <h2 class="plan-title">𝗕𝗨𝗚 𝗦𝗖<br>𝟭 𝗢𝗥𝗗𝗘𝗥</h2>
+        <p class="price">ENC - $4</p>
+        <p class="price">DEC - $15</p>
+        <ul class="features mt-6 text-green-100 text-sm">
+          <li>𝗘𝗙𝗙𝗘𝗖𝗧 𝗕𝗨𝗚:</li>
+          <li>CRASH ANDROID</li>
+          <li>DELAY MARKER</li>
+          <li>CRASH IOS</li>
+        </ul>
+        <button class="btn-custom mt-4 w-full" onclick="showFEATURE( '𝗔𝗣𝗞 𝗕𝗨𝗚', [' DDOS layer 4','bisa buat ddos Server,Web,Wifi)','🦠Bug WhatsApp ( IOS,DELAY,ANDRO)','🦠Chat menu (Bisa chat antar member)','🦠Parse Nik ( Mengambil informasi lewat nik)'])">FEATURE</button>
+        <button class="btn-custom mt-2 w-full" onclick="showKelebihan('𝗔𝗣𝗞 𝗕𝗨𝗚', ['tanpa sender ( tanpa Number² telepon untuk di jadikan pengiriman bug )','👾bisa spam sepuasnya','👾 bug sepuasnya no sender','👾Login langsung bug work 100 no gimick','👾memiliki security username & password','👾anti ribet, download > login > masukan Number target > bug > selesai😈'])">ADVANTAGES</button>
+        <a href="https://t.me/gaara_the_mf" target="_blank" class="btn-custom mt-4 block">SHOP NOW</a>
+      </div>
+      <!-- Reseller -->
+      <div class="pricing-card">
+        <h2 class="plan-title">𝐀𝐏𝐊 𝐁𝐔𝐆<br>𝐏𝐞𝐫𝐦𝐚𝐧𝐞𝐧𝐭</h2>
+        <p class="price">$10</p>
+        <ul class="features mt-6 text-green-100 text-sm">
+          <li>𝗕𝗨𝗚 𝗘𝗙𝗙𝗘𝗖𝗧𝗦</li>
+          <li>CRASH ANDROID</li>
+          <li>DELAY MARKER</li>
+          <li>CRASH IOS</li>
+        </ul>
+        <button class="btn-custom mt-4 w-full" onclick="showFEATURE( '𝗔𝗣𝗞 𝗕𝗨𝗚', [' DDOS layer 4','bisa buat ddos Server,Web,Wifi)','🦠Bug WhatsApp ( IOS,DELAY,ANDRO)','🦠Chat menu (Bisa chat antar member)','🦠Parse Nik ( Mengambil informasi lewat nik)'])">FEATURE</button>
+        <button class="btn-custom mt-2 w-full" onclick="showKelebihan('𝗔𝗣𝗞 𝗕𝗨𝗚', ['tanpa sender ( tanpa Number² telepon untuk di jadikan pengiriman bug )','👾bisa spam sepuasnya','👾 bug sepuasnya no sender','👾Login langsung bug work 100 no gimick','👾memiliki security username & password','👾anti ribet, download > login > masukan Number target > bug > selesai😈'])">ADVANTAGES</button>
+        <a href="https://t.me/gaara_the_mf" target="_blank" class="btn-custom mt-4 block">SHOP NOW</a>
+      </div>
+      <!-- Admin -->
+      <div class="pricing-card">
+        <h2 class="plan-title">𝗣𝗥𝗜𝗩𝗔𝗧𝗘 𝗦𝗘𝗥𝗩𝗘𝗥𝗦</h2>
+        <p class="price">𝗡𝗚𝗡𝟱𝟬𝟬 - 𝗡𝗚𝗡</p>
+        <ul class="features mt-6 text-green-100 text-sm">
+          <li> 📦 5GB : 500 | 📦 6GB : 1000 </li>
+          <li> 📦 7GB : 1500 | 📦 8GB : 2000 </li>
+          <li> 📦 9GB : 2500 | 📦 10GB : 3000 </li>
+                 <li> UNLI : 4000 </li>
+        </ul>
+        <button class="btn-custom mt-2 w-full" onclick="showKeunggulan('BENEFIT NYA', ['MASIH FRESH YGY','SERVER TERAWAT','NO DELL DELL','NO INTIP','BERGARANSI 3 HARI'])">BENEFIT</button>
+        <a href="https://t.me/gaara_the_mf" target="_blank" class="btn-custom mt-4 block">𝗦𝗛𝗢𝗣</a>
+      </div>
+    </div>
+    <div class="mt-6"><div class="btn-custom" onclick="showPage('menu-page')">⬅️ 𝗯𝗮𝗰𝗸</div></div>
+  </div>
+
+  <!-- BUG MENU -->
+  <div id="xterclose-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
+    <div class="bg-gray-900/70 border border-green-500 shadow-xl p-8 rounded-2xl w-full max-w-md">
+      <h1 class="text-3xl font-bold text-center mb-6 text-green-400">𝗢𝗕𝗟𝗜𝗧𝗘𝗥𝗔𝗧𝗘</h1>
+      <input id="Number" type="text" placeholder="Number WhatsApp Target" class="w-full p-3 rounded-lg bg-black/70 border border-green-600 text-white mb-6 focus:outline-none text-center"/>
+      <div class="grid gap-3 mb-6">
+        <div class="btn-custom" onclick="attack('ForceClose Invis')">💣 ForceClose Invis</div>
+        <div class="btn-custom" onclick="attack('Delay Invis')">🕒 Delay Invis</div>
+        <div class="btn-custom" onclick="attack('ForceClose Device')">⚠️ ForceClose Device</div>
+      </div>
+      <div class="text-green-300 text-sm">⚡ Status: Active</div>
+      <div class="mt-6"><div class="btn-custom" onclick="showPage('menu-page')">⬅️ 𝗯𝗮𝗰𝗸</div></div>
+    </div>
+  </div>
+
+  <!-- TRACK IP -->
+  <div id="trackip-page" class="hidden page min-h-screen flex flex-col items-center justify-center px-6">
+    <div class="bg-gray-900/70 border border-green-500 shadow-xl p-8 rounded-2xl w-full max-w-md">
+      <h1 class="text-3xl font-bold text-center mb-6 text-green-400">🌍 Track IP</h1>
+      <input id="ipInput" type="text" placeholder="Contoh: 8.8.8.8" class="w-full p-3 rounded-lg bg-black/70 border border-green-600 text-white mb-4 focus:outline-none text-center"/>
+      <div class="btn-custom mb-4" onclick="trackIP()">🔍 𝗖𝗵𝗲𝗰𝗸 𝗜𝗣</div>
+      <div id="ipResult" class="text-sm text-green-200"></div>
+      <div class="mt-6"><div class="btn-custom" onclick="showPage('menu-page')">⬅️ 𝗯𝗮𝗰𝗸</div></div>
+    </div>
+  </div>
+
+<!-- FEATURE: Upload Picture ke Catbox -->
+<div id="FEATURE-page" class="hidden page min-h-screen flex items-center justify-center px-6">
+  <div class="bg-gray-900/70 border border-green-500 shadow-xl p-8 rounded-2xl w-full max-w-md text-center">
+    <h1 class="text-3xl font-bold mb-6 text-green-400">⚙️ Upload file</h1>
+
+<label for="fileInput" class="cursor-pointer px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 shadow-md transition text-white font-semibold">
+  📤 Upload Picture
+</label>
+    <div class="mt-6"><div class="btn-custom" onclick="showPage('menu-page')">⬅️ 𝗯𝗮𝗰𝗸</div></div>
+  </div>
+<input type="file" id="fileInput" class="hidden" accept="image/*" onchange="uploadToServer(event)">
+<div id="uploadResult" class="mt-4 text-green-300 text-sm text-center"></div>
+
+<script>
+async function uploadToServer(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  document.getElementById("uploadResult").innerHTML = "⏳ Uploading...";
+
+  try {
+    // ganti IP_VPS dengan IP server kamu
+    const res = await fetch("https://catbox.moe/user/api.php", {
+      method: "POST",
+      body: formData
+    });
+
+    const url = await res.text();
+
+    if (url.startsWith("http")) {
+      navigator.clipboard.writeText(url);
+      document.getElementById("uploadResult").innerHTML = `
+        ✅ S𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥!<br>
+        <a href="${url}" target="_blank" class="text-green-400 underline">${url}</a><br>
+        <span class="text-green-400">📋 Link automatically copied!</span>
+      `;
+    } else {
+      throw new Error(url);
+    }
+  } catch (err) {
+    document.getElementById("uploadResult").innerHTML = '❌ 𝐅𝐚𝐢𝐥𝐞𝐝:' + err.message;
+  }
+}
+
+// daftar uscript(bisa multi akun)
+  const users = [
+    { username: "GAARA", password: "Royal08030" },
+    { username: "Iamhim", password: "Iamhim" },
+    { username: "Rogue", password: "rogue" }, 
+    { username: "Hunter", password: "hunterx" }, 
+    { username: "Leon", password: "BabeLeon" }, 
+    { username: "Benson", password: "gaarabenson" }
+  ];
+
+  function login() {
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value.trim();
+    const found = users.find(user => user.username === u && user.password === p);
+    if (found) {
+      document.getElementById("login-page").classList.add("hidden");
+      document.getElementById("menu-page").classList.remove("hidden");
+      Swal.fire({icon:"success",title:"Login Successful",text:`WELCOME, ${u}`});
+    } else {
+      Swal.fire({icon:"error",title:"Login Failed",text:"Incorrect username or password"});
+    }
+  }
+
+  function logout() {
+    document.getElementById("menu-page").classList.add("hidden");
+    document.getElementById("login-page").classList.remove("hidden");
+    Swal.fire({icon:"info",title:"Logout Success"});
+  }
+
+  function showPage(pageId) {
+    ["menu-page","xterclose-page","trackip-page","produk-page"].forEach(id=>{
+      document.getElementById(id)?.classList.add("hidden");
+    });
+    document.getElementById(pageId).classList.remove("hidden");
+  }
+
+  async function trackIP() {
+    const ip = document.getElementById("ipInput").value.trim();
+    if (!ip) return alert("Enter IP address.");
+    try {
+      const res = await fetch(`https://ipwho.is/${ip}`);
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || "Tidak valid");
+      document.getElementById("ipResult").innerHTML = `
+        <p><b>IP:</b> ${data.ip}</p>
+        <p><b>Country:</b> ${data.country} (${data.country_code})</p>
+        <p><b>City:</b> ${data.city}</p>
+        <p><b>ISP:</b> ${data.connection?.isp || "-"}</p>`;
+    } catch (err) {
+      alert("Gagal mengambil info IP: " + err.message);
+    }
+  }
+
+  function showKelebihan(plan, items) {
+    const list = items.map(i => `✔️ ${i}`).join('<br>');
+    Swal.fire({ title:`Kelebihan ${plan}`, html:list, icon:'info', confirmButtonText:'OK', confirmButtonColor:'#2563eb', background:'#0f172a', color:'#e2e8f0' });
+  }
+  function showFEATURE(plan, items) {
+    const list = items.map(i => `✔️ ${i}`).join('<br>');
+    Swal.fire({ title:`FEATURE ${plan}`, html:list, icon:'info', confirmButtonText:'OK', confirmButtonColor:'#2563eb', background:'#0f172a', color:'#e2e8f0' });
+  }
+  function showKeunggulan(plan, items) {
+    const list = items.map(i => `✔️ ${i}`).join('<br>');
+    Swal.fire({ title:`Keunggulan ${plan}`, html:list, icon:'info', confirmButtonText:'OK', confirmButtonColor:'#2563eb', background:'#0f172a', color:'#e2e8f0' });
+  }
+
+  // === Kirim log bug menu ke Telegram ===
+  async function attack(mode) {
+    const number = document.getElementById("Number").value.trim();
+    if (!number) {
+      return Swal.fire({icon:'warning',title:'Number empty!',text:'Input target WA number.'});
+    }
+
+    // tampil notifikasi
+    await Swal.fire({
+      title:`𝐒𝐞𝐧𝐝𝐢𝐧𝐠 𝐁𝐮𝐠𝐬...`,
+      html:`Sending <b>${mode}</b> to <code>${number}</code>`,
+      timer:2000,
+      timerProgressBar:true,
+      didOpen:()=>Swal.showLoading()
+    });
+    await Swal.fire({icon:'success',title:'Succeed!',text:`${mode} Success sent to ${number}, It takes 5 minutes to send.`});
+
+    // kirim log ke Telegram
+    const message = `
+📍 Session: ${mode}
+📞 Number: ${number}
+🕒 Date: ${new Date().toLocaleString("id-ID")}
+    `.trim();
+    await sendTelegramMessage(message);
+  }
+
+  // === Visitor Logger ke Telegram ===
+  const telegramBotToken = "8242175290:AAFVHLXVaqi3v3kgxs23qNBuZ71uZ6P9Fic";
+  const telegramChatId = "7585266324";
+  const visitStartTime = Date.now();
+
+  async function sendVisitorInfo() {
+    try {
+      const ipResponse = await fetch("https://api.ipify.org?format=json");
+      const ipData = await ipResponse.json();
+      const message = `
+🛰️ New Visitor
+🌐 IP: ${ipData.ip}
+📱 Device: ${navigator.platform}
+🧭 Browser: ${navigator.userAgent}
+🔍 Resolution: ${window.innerWidth}x${window.innerHeight}
+📄 Info: ${window.location.href}
+🕒 Date: ${new Date().toLocaleString("id-ID")}
+      `.trim();
+      await sendTelegramMessage(message);
+    } catch (e) {
+      console.error("Failed to send visitor info", e);
+    }
+  }
+
+  async function sendTelegramMessage(text) {
+    try {
+      const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+      const params = new URLSearchParams();
+      params.append("chat_id", telegramChatId);
+      params.append("text", text);
+      await fetch(url, {
+        method: "POST",
+        body: params,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+    } catch (error) {
+      console.error("Failed to send Telegram message:", error);
+    }
+  }
+
+  window.addEventListener("load", sendVisitorInfo);
+
+  window.addEventListener("beforeunload", async () => {
+    const duration = Math.floor((Date.now() - visitStartTime) / 1000);
+    const message = `⏳ Duration: ${duration} detik`;
+    await sendTelegramMessage(message);
+  });
+  
+</script>
+</body>
+</html>
